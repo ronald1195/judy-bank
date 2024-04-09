@@ -11,6 +11,7 @@ struct MultiselectRow: View {
     
     var player: Player
     @Binding var selectedItems: Set<UUID>
+    @Binding var newPoints: Int
     
     var isSelected: Bool {
         selectedItems.contains(player.id)
@@ -20,10 +21,13 @@ struct MultiselectRow: View {
         HStack {
             Text(player.name)
             Spacer()
-            Text("$ \(player.points)")
             if isSelected {
                 Image(systemName: "checkmark")
                     .foregroundColor(.blue)
+                Text("$ \(player.points + newPoints)")
+            }
+            else {
+                Text("$ \(player.points)")
             }
         }
         
@@ -37,11 +41,26 @@ struct PlayersBankView: View {
     
     var body: some View {
         
-        NavigationView {
-            List(players, selection: $selectedPlayers) { player in
-                MultiselectRow(player: player, selectedItems: $selectedPlayers)
+        VStack{
+            NavigationView {
+                List(players, selection: $selectedPlayers) { player in
+                    MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
+                }
+    //            .toolbar { EditButton() }
             }
-//            .toolbar { EditButton() }
+            Button(action: {applyPointsToUsers()}, label: {
+                Text("Apply Points")
+            })
+        }
+        
+    }
+    
+    func applyPointsToUsers() {
+        for index in players.indices {
+            let player = players[index]
+            if selectedPlayers.contains(player.id) {
+                players[index].addPoints(pointsToBeAdded: bankingPoints)
+            }
         }
     }
 }
