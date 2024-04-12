@@ -38,6 +38,7 @@ struct PlayersBankView: View {
     @State var bankingPoints: Int
     @State var players: [Player]
     @State private var selectedPlayers = Set<UUID>()
+    @Binding var isPresented: Bool
     
     var body: some View {
         
@@ -61,10 +62,11 @@ struct PlayersBankView: View {
             if selectedPlayers.contains(player.id) {
                 players[index].addPoints(pointsToBeAdded: bankingPoints)
             }
+            isPresented = false
         }
     }
 }
 
 #Preview {
-    PlayersBankView(bankingPoints: 100, players: Player.samples)
+    PlayersBankView(bankingPoints: 100, players: Player.samples, isPresented: .constant(true))
 }

@@ -14,7 +14,6 @@ struct PlayGameView: View {
     @State var players = Player.samples
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
-//    @State var allUsersBanked = players.allSatisfy($0.active == true)
 
     var body: some View {
         Text("Round: \(currentRound) / \(roundsToPlay)")
@@ -30,7 +29,7 @@ struct PlayGameView: View {
                     .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.red/*@END_MENU_TOKEN@*/)
             })
             .sheet(isPresented: $showingPlayersSheet) {
-                PlayersBankView(bankingPoints: roundPoints, players: players)
+                PlayersBankView(bankingPoints: roundPoints, players: players, isPresented: $showingPlayersSheet)
             }
             
             Text("\(roundPoints)")
