@@ -32,8 +32,8 @@ struct PlayGameView: View {
                 PlayersBankView(bankingPoints: roundPoints, players: players, isPresented: $showingPlayersSheet)
             }
             
-            Text("\(roundPoints)")
-            Text("\(gamePoints)")
+//            Text("\(roundPoints)")
+//            Text("\(gamePoints)")
         }
         else {
             Text("check results")
