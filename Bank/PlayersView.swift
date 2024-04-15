@@ -13,34 +13,40 @@ struct PlayersView: View {
     @State var players = [Player]()
     @State var pp = Player.samples
     @State private var showingSheet = false
+    @State var gameViewActive = false
     
     var body: some View {
-        NavigationView {
-                List {
-                    ForEach(players, id: \.self) { player in
-                        PlayerRowView(player: player)
+        if gameViewActive {
+           PlayGameView()
+        }
+        else {
+            NavigationView {
+                    List {
+                        ForEach(players, id: \.self) { player in
+                            PlayerRowView(player: player)
+                        }
+                        .onDelete(perform: delete)
                     }
-                    .onDelete(perform: delete)
-                }
-                .navigationBarTitle("Players")
-                .navigationBarItems(trailing: Button("Add", action: addItemToRow)
-                    .sheet(isPresented: $showingSheet) {
-                        AddPlayerView(newPlayer: $players)
-                    })
+                    .navigationBarTitle("Players")
+                    .navigationBarItems(trailing: Button("Add", action: addItemToRow)
+                        .sheet(isPresented: $showingSheet) {
+                            AddPlayerView(newPlayer: $players)
+                        })
+            }
+           
+            
+            if players.isEmpty {
+                        Text("Start by adding some players...")
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .position(CGPoint(x: UIScreen.main.bounds.size.width/2, y:-UIScreen.main.bounds.height/6))
+                            .foregroundStyle(.gray)
+            }
+           
+            Button(action: {startGame()}, label: {
+                Text("Start Game!")
+            })
         }
-       
-        
-        if players.isEmpty {
-                    Text("Start by adding some players...")
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .position(CGPoint(x: UIScreen.main.bounds.size.width/2, y:-UIScreen.main.bounds.height/6))
-                        .foregroundStyle(.gray)
-        }
-       
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-            Text("Start Game!")
-        })
     }
     
     private func addItemToRow() {
@@ -51,6 +57,10 @@ struct PlayersView: View {
         if let first = offsets.first {
                     players.remove(at: first)
                 }
+    }
+    
+    private func startGame() {
+        gameViewActive.toggle()
     }
 }
 
