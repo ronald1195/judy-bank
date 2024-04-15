@@ -11,13 +11,12 @@ struct PlayersView: View {
     @State var newPlayer = Player.empty
     @State var numbers = [1,2,3,4]
     @State var players = [Player]()
-    @State var pp = Player.samples
     @State private var showingSheet = false
     @State var gameViewActive = false
     
     var body: some View {
         if gameViewActive {
-           PlayGameView()
+            PlayGameView(players: $players)
         }
         else {
             NavigationView {

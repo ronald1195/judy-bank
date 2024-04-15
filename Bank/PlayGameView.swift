@@ -11,7 +11,7 @@ struct PlayGameView: View {
     var roundsToPlay = 10
     @State var currentRound = 1
     @State var gamePoints = 0
-    @State var players = Player.samples
+    @Binding var players: [Player]
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
 
@@ -48,5 +48,5 @@ struct PlayGameView: View {
 }
 
 #Preview {
-    PlayGameView()
+    PlayGameView(players: .constant([Player]()))
 }
