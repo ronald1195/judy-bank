@@ -27,12 +27,12 @@ Gameplay:
 	* A new round begins with the Bank total reset to zero.
 
 Scoring:
-	* Players accumulate points over multiple rounds.
- 	* The game typically consists of 10, 15, or 20 rounds, as agreed upon before starting.
-  	* The player with the highest total score at the end of the game wins.
+* Players accumulate points over multiple rounds.
+* The game typically consists of 10, 15, or 20 rounds, as agreed upon before starting.
+* The player with the highest total score at the end of the game wins.
 
-Additional Notes:
-	* Strategic decisions involve choosing when to bank points to avoid losing them if a 7 is rolled.
-	* The first three rolls of each round have unique rules that can significantly impact the Bank total.
+Additional notes:
+* Strategic decisions involve choosing when to bank points to avoid losing them if a 7 is rolled.
+* The first three rolls of each round have unique rules that can significantly impact the Bank total.
 
 Enjoy playing Bank, and may the dice roll in your favor!
