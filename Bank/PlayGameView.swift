@@ -19,7 +19,7 @@ struct PlayGameView: View {
         Text("Round: \(currentRound) / \(roundsToPlay)")
          
         if currentRound <= roundsToPlay {
-            CalculatorView(roundPoints: $roundPoints, round: $currentRound)
+            CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $players)
             
             Button(action: {bankButtonClick()}, label: {
                 Text("Bank!")

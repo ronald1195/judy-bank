@@ -12,6 +12,8 @@ struct CalculatorView: View {
 //    @Binding var reset: Bool
     @State var turn = 0
     @Binding var round: Int
+    @Binding var players: [Player] // Pass players as a binding
+
     
     
     var body: some View {
@@ -163,10 +165,15 @@ struct CalculatorView: View {
         self.turn = 0
         roundPoints = 0
         round += 1
+        
+        // Reset all players to active
+                for player in players {
+                    player.resetStatus()
+                }
     }
     
 }
 
 #Preview {
-    CalculatorView(roundPoints: .constant(0), round: .constant(1))
+    CalculatorView(roundPoints: .constant(0), round: .constant(1), players: .constant([Player]()))
 }

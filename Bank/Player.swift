@@ -26,8 +26,8 @@ class Player: Identifiable, Hashable {
     let id = UUID()
     let name: String
     var points: Int
-    var active = true
-    
+    private(set) var active: Bool // Restrict external writes
+
     init(name: String, points: Int, active: Bool = true) {
         self.name = name
         self.points = points
@@ -38,8 +38,19 @@ class Player: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    func addPoints(pointsToBeAdded : Int) {
+    func addPoints(pointsToBeAdded: Int) -> Bool {
+        guard active else {
+            print("Player \(name) is inactive and cannot receive points.")
+            return false
+        }
+        
         self.points += pointsToBeAdded
+        self.active = false // Automatically mark player as inactive
+        return true
+    }
+    
+    func resetStatus() {
+        self.active = true
     }
 }
 
