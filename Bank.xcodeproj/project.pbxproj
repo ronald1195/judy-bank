@@ -11,6 +11,8 @@
 		D995B27F2BB67FDA00AB960F /* PlayerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995B27E2BB67FDA00AB960F /* PlayerRowView.swift */; };
 		D995B2812BB7818300AB960F /* PlayGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995B2802BB7818300AB960F /* PlayGameView.swift */; };
 		D995B2852BB7DDF600AB960F /* PlayersBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D995B2842BB7DDF600AB960F /* PlayersBankView.swift */; };
+		D9A3C2712D3F67FC0028075A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A3C2702D3F67FC0028075A /* LaunchScreen.storyboard */; };
+		D9A3C2752D3F704C0028075A /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = D9A3C2742D3F704C0028075A /* bank.png */; };
 		D9F458862BA4EE1100B3BFCB /* BankApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F458852BA4EE1100B3BFCB /* BankApp.swift */; };
 		D9F458882BA4EE1100B3BFCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F458872BA4EE1100B3BFCB /* ContentView.swift */; };
 		D9F4588A2BA4EE1400B3BFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F458892BA4EE1400B3BFCB /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		D995B27E2BB67FDA00AB960F /* PlayerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRowView.swift; sourceTree = "<group>"; };
 		D995B2802BB7818300AB960F /* PlayGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameView.swift; sourceTree = "<group>"; };
 		D995B2842BB7DDF600AB960F /* PlayersBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersBankView.swift; sourceTree = "<group>"; };
+		D9A3C2702D3F67FC0028075A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D9A3C2742D3F704C0028075A /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bank.png; sourceTree = "<group>"; };
 		D9F458822BA4EE1100B3BFCB /* Bank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9F458852BA4EE1100B3BFCB /* BankApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankApp.swift; sourceTree = "<group>"; };
 		D9F458872BA4EE1100B3BFCB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,7 +82,9 @@
 				D995B2802BB7818300AB960F /* PlayGameView.swift */,
 				D995B2842BB7DDF600AB960F /* PlayersBankView.swift */,
 				D9F458892BA4EE1400B3BFCB /* Assets.xcassets */,
+				D9A3C2742D3F704C0028075A /* bank.png */,
 				D9F4588B2BA4EE1400B3BFCB /* Preview Content */,
+				D9A3C2702D3F67FC0028075A /* LaunchScreen.storyboard */,
 			);
 			path = Bank;
 			sourceTree = "<group>";
@@ -149,8 +155,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A3C2712D3F67FC0028075A /* LaunchScreen.storyboard in Resources */,
 				D9F4588D2BA4EE1400B3BFCB /* Preview Assets.xcassets in Resources */,
 				D9F4588A2BA4EE1400B3BFCB /* Assets.xcassets in Resources */,
+				D9A3C2752D3F704C0028075A /* bank.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +309,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Bank/Preview Content\"";
@@ -330,6 +339,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Bank/Preview Content\"";
