@@ -12,24 +12,27 @@ struct GameSetupView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
+            Color.bank_beige
+                .edgesIgnoringSafeArea(.all)
+//            NavigationView {
                 VStack {
                     Image("bank")
                         .resizable()
                         .scaledToFit()
                         .padding()
-
+                    
                     NavigationLink(destination: PlayersView()) {
                         Text("Start Game")
                             .foregroundColor(.white)
                             .padding()
                             .background(Color.blue)
                             .cornerRadius(8)
+                            
                     }
                 }
-            }
-            .padding()
-            .background(Color.red)
+//                .foregroundColor(Color.red)
+//                .background(Color.red)
+//            }
         }
     }
 }
