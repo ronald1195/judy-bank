@@ -8,31 +8,28 @@
 import SwiftUI
 
 struct GameSetupView: View {
-    @State var showingAddPlayersView = false
+    @State private var showingAddPlayersView = false
     
     var body: some View {
         ZStack {
             Color.bank_beige
                 .edgesIgnoringSafeArea(.all)
-//            NavigationView {
-                VStack {
-                    Image("bank")
-                        .resizable()
-                        .scaledToFit()
-                        .padding()
-                    
-                    NavigationLink(destination: PlayersView()) {
-                        Text("Start Game")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                            
-                    }
+            VStack {
+                Image("bank")
+                    .resizable()
+                    .scaledToFit()
+                
+                Button("Start Game") {
+                    showingAddPlayersView = true
                 }
-//                .foregroundColor(Color.red)
-//                .background(Color.red)
-//            }
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(8)
+                .fullScreenCover(isPresented: $showingAddPlayersView) {
+                    PlayersView()
+                }
+            }
         }
     }
 }
