@@ -17,28 +17,38 @@ struct PlayGameView: View {
 
     var body: some View {
         Text("Round: \(currentRound) / \(roundsToPlay)")
+            .font(.headline)
+            .padding(.bottom, 20)
          
         if currentRound <= roundsToPlay {
             CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $players)
             
             Button(action: {bankButtonClick()}, label: {
                 Text("Bank!")
-                    .foregroundColor(Color.black)
-                    .frame(width: 306.0, height: 60.0)
-                    .border(/*@START_MENU_TOKEN@*/Color.red/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                    .font(.headline)
+                    .foregroundColor(Color.white)
+                    .frame(width: 340.0, height: 70.0)
+                    .border(Color.red, width: 2)
                     .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.red/*@END_MENU_TOKEN@*/)
+                    .cornerRadius(50)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 50)
+                            .stroke(Color.red, lineWidth: 2)
+                    )
+                    .padding()
             })
             .sheet(isPresented: $showingPlayersSheet) {
                 PlayersBankView(bankingPoints: roundPoints, players: players, isPresented: $showingPlayersSheet)
             }
             
             Text("Round points: $\(roundPoints)")
+                .font(.headline)
+                .padding()
             
         }
         else {
             Text("check results")
         }
-        
     }
     
     func bankButtonClick() {
