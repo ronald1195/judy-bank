@@ -18,7 +18,7 @@ struct CalculatorView: View {
     
     
     var body: some View {
-        GeometryReader { geometry in
+//        GeometryReader { geometry in
             VStack{
                 HStack{
                     Button(action: {
@@ -26,7 +26,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("2")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)
+                            .frame(width:90, height: 90)
                             .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
@@ -40,7 +40,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("3")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -54,7 +54,7 @@ struct CalculatorView: View {
                         Text("4")
                             .padding(.horizontal)
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -67,7 +67,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("5")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -82,7 +82,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("6")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -96,7 +96,7 @@ struct CalculatorView: View {
                         Text("7")
                             .font(.title)
                             .foregroundColor(turn >= 3 ? Color.red : Color.green)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .overlay(
+                            .frame(width:90, height: 90)                        .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(turn >= 3 ? Color.red : Color.green, lineWidth: 2)
                             )
@@ -108,7 +108,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("8")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -121,7 +121,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("9")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -136,7 +136,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("10")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -148,7 +148,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("11")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -160,7 +160,7 @@ struct CalculatorView: View {
                     }, label: {
                         Text("12")
                             .font(.title)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(Color.primary, lineWidth: 2)
@@ -180,7 +180,7 @@ struct CalculatorView: View {
                         Text("X2")
                             .font(.title)
                             .foregroundColor(turn >= 3 ? Color.orange : Color.gray)
-                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)
+                            .frame(width:90, height: 90)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
                                     .stroke(turn >= 3 ? Color.orange : Color.gray, lineWidth: 2)
@@ -190,8 +190,10 @@ struct CalculatorView: View {
                     .scaleEffect(isPressed ? 1.1 : 1.0)
                 }
                 
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+//            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+//                .border(Color.black, width: 1)
+                
+        }//.border(Color.black, width: 1)
     }
     
     func addValue(value: Int) {
