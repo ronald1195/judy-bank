@@ -18,203 +18,179 @@ struct CalculatorView: View {
     
     
     var body: some View {
-        
-//        Text("Round: \(round)")
-//        Text("\(roundPoints)")
-        VStack{
-            HStack{
-                Button(action: {
-                    addValue(value: 2)
-                }, label: {
-                    Text("2")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 3)
-                }, label: {
-                    Text("3")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 4)
-                }, label: {
-                    Text("4")
-                        .padding(.horizontal)
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 5)
-                }, label: {
-                    Text("5")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-            }
-            HStack{
-                Button(action: {
-                    addValue(value: 6)
-                }, label: {
-                    Text("6")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 7)
-                }, label: {
-                    Text("7")
-                        .font(.title)
-                        .foregroundColor(turn >= 3 ? Color.red : Color.green)
-                        .frame(width: 75.0, height: 75.0)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(turn >= 3 ? Color.red : Color.green, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 8)
-                }, label: {
-                    Text("8")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 9)
-                }, label: {
-                    Text("9")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-            }
-            HStack{
-                Button(action: {
-                    addValue(value: 10)
-                }, label: {
-                    Text("10")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 11)
-                }, label: {
-                    Text("11")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                    addValue(value: 12)
-                }, label: {
-                    Text("12")
-                        .font(.title)
-                        .frame(width: 75.0, height: 75.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.primary, lineWidth: 2)
-                        )
-                        .padding(.horizontal, 4)
-                        .padding(.bottom)
-                })
-                Button(action: {
-                            withAnimation(.spring(response: 0.4, dampingFraction: 0.3)) {
-                                isPressed.toggle() // Trigger the scale effect
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                isPressed.toggle() // Reset the scale after a short delay
-                            }
-
-                            doublePoints() // Your action
-                        }) {
-                            Text("X2")
-                                .font(.title)
-                                .foregroundColor(turn >= 3 ? Color.orange : Color.gray)
-                                .frame(width: 75.0, height: 75.0) // Fixed size
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 50)
-                                        .stroke(turn >= 3 ? Color.orange : Color.gray, lineWidth: 2)
-                                )
-                                .padding(.horizontal, 4)
-                                .padding(.bottom)
+        GeometryReader { geometry in
+            VStack{
+                HStack{
+                    Button(action: {
+                        addValue(value: 2)
+                    }, label: {
+                        Text("2")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)
+                            .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 3)
+                    }, label: {
+                        Text("3")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 4)
+                    }, label: {
+                        Text("4")
+                            .padding(.horizontal)
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 5)
+                    }, label: {
+                        Text("5")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                }
+                HStack{
+                    Button(action: {
+                        addValue(value: 6)
+                    }, label: {
+                        Text("6")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 7)
+                    }, label: {
+                        Text("7")
+                            .font(.title)
+                            .foregroundColor(turn >= 3 ? Color.red : Color.green)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(turn >= 3 ? Color.red : Color.green, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 8)
+                    }, label: {
+                        Text("8")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 9)
+                    }, label: {
+                        Text("9")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                    })
+                }
+                HStack{
+                    Button(action: {
+                        addValue(value: 10)
+                    }, label: {
+                        Text("10")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 11)
+                    }, label: {
+                        Text("11")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                    })
+                    Button(action: {
+                        addValue(value: 12)
+                    }, label: {
+                        Text("12")
+                            .font(.title)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)                        .foregroundColor(.primary)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.primary, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                    })
+                    Button(action: {
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.3)) {
+                            isPressed.toggle() // Trigger the scale effect
                         }
-                        .scaleEffect(isPressed ? 1.2 : 1.0)
-    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            isPressed.toggle() // Reset the scale after a short delay
+                        }
+                        
+                        doublePoints() // Your action
+                    }) {
+                        Text("X2")
+                            .font(.title)
+                            .foregroundColor(turn >= 3 ? Color.orange : Color.gray)
+                            .frame(width:geometry.size.width * 0.22, height: geometry.size.width * 0.22)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(turn >= 3 ? Color.orange : Color.gray, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 1)
+                    }
+                    .scaleEffect(isPressed ? 1.1 : 1.0)
+                }
                 
-            }
-//            Button(action: {}, label: {
-//                Text("Bank!")
-//                    .foregroundColor(Color.black)
-//                    .frame(width: 306.0, height: 60.0)
-//                    .border(/*@START_MENU_TOKEN@*/Color.red/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-//                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.red/*@END_MENU_TOKEN@*/)
-//            })
-            
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
     

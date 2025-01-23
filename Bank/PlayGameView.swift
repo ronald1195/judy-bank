@@ -20,6 +20,7 @@ struct PlayGameView: View {
             .font(.headline)
             .padding(.bottom, 20)
          
+        Spacer()
         if currentRound <= roundsToPlay {
             CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $players)
             
@@ -27,7 +28,7 @@ struct PlayGameView: View {
                 Text("Bank!")
                     .font(.headline)
                     .foregroundColor(Color.white)
-                    .frame(width: 340.0, height: 70.0)
+                    .frame(width: 250, height: 75)
                     .border(Color.red, width: 2)
                     .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.red/*@END_MENU_TOKEN@*/)
                     .cornerRadius(50)
@@ -35,7 +36,7 @@ struct PlayGameView: View {
                         RoundedRectangle(cornerRadius: 50)
                             .stroke(Color.red, lineWidth: 2)
                     )
-                    .padding()
+                    .padding(.vertical, 20)
             })
             .sheet(isPresented: $showingPlayersSheet) {
                 PlayersBankView(bankingPoints: roundPoints, players: players, isPresented: $showingPlayersSheet)
