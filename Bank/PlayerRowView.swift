@@ -14,9 +14,10 @@ struct PlayerRowView: View {
         HStack {
             Text(player.name)
                 .foregroundColor(.primary)
-                .font(.headline)
+                .font(.title2)
             Spacer()
             Text("$ \(player.points)")
+                .font(.title3)
         }
         .padding(.horizontal)
     }

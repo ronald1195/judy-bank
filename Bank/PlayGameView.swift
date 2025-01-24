@@ -14,12 +14,33 @@ struct PlayGameView: View {
     @Binding var players: [Player]
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
+    @State private var showingPlayerListSheet = false
 
     var body: some View {
+//        Button(label: {
+//            Text("go to players page")
+//                .font(.headline)
+//                .foregroundColor(Color.white)
+//                .frame(width: 250, height: 75)
+//                .border(Color.red, width: 2)
+//        }
+//        .fullScreenCover(isPresented: $showingPlayersSheet) {
+//                                PlayersView(players: players)
+//                            }
+//
+        Button("Back"){
+            showingPlayerListSheet = true
+        }
+        .fullScreenCover(isPresented: $showingPlayerListSheet) {
+            PlayersView(players: $players)
+//            PlayersView()
+        }
+        
         VStack {
             Text("Round: \(currentRound) / \(roundsToPlay)")
                 .font(.headline)
                 .padding(.bottom, 20)
+                .foregroundStyle(Color.primary)
              
             Spacer()
             if currentRound <= roundsToPlay {
@@ -46,6 +67,8 @@ struct PlayGameView: View {
                 Text("Round points: $\(roundPoints)")
                     .font(.headline)
                     .padding()
+                    .foregroundStyle(Color.primary)
+                 
                 
             }
             else {
@@ -54,10 +77,14 @@ struct PlayGameView: View {
         }
     }
     
-    func bankButtonClick() {
+    private func bankButtonClick() {
         gamePoints += roundPoints
         showingPlayersSheet.toggle()
     }
+                    
+//    func playersSheetButtonClick() {
+//
+//    }
 }
 
 #Preview {

@@ -1,68 +1,81 @@
-//
-//  AddPlayerView.swift
-//  Bank
-//
-//  Created by Ronald Muñoz on 3/25/24.
-//
-
 import SwiftUI
+import os
+import Foundation
 
 struct AddPlayerView: View {
-    @Binding var newPlayer: [Player]
-    @State var displayPlayerNames = []
-    @State private var username: String = ""
-    @State private var closeView = false
-    @State var name = ""
-    @Environment(\.dismiss) var dismiss
+    @Binding var newPlayer: [Player] // Binding to parent view
+    @State private var localPlayers = [Player]() // Local state for added players
+    @State private var username: String = "" // Temporary username input
+    @Environment(\.dismiss) var dismiss // Environment dismiss for closing the sheet
     @State private var popupMessageTextShowing = false
     @State private var popupNameText = ""
-    
+
     var body: some View {
         VStack {
-            Text((popupMessageTextShowing ? "\(popupNameText) added to the game" : ""))
-        }
-        VStack{
-            TextField("Username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal, 70)
-                .padding(.vertical, 20)
-            HStack{
-                Button(action: {complete()}, label: {
-                                Text("Complete")
-                            })
-                Spacer()
-                Button(action: {addPlayer()}, label: {
-                                Text("Add more")
-                            })
+            // Show a popup message when a player is added
+            if popupMessageTextShowing {
+                Text("\(popupNameText) added to the game")
+                    .foregroundColor(.green)
+                    .transition(.opacity)
+                    .padding(.bottom, 10)
             }
-            .padding(.horizontal, 70)
-            .buttonStyle(.bordered)
+
+            VStack {
+                TextField("Username", text: $username)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal, 70)
+                    .padding(.vertical, 20)
+
+                HStack {
+                    Button(action: complete, label: {
+                        Text("Complete")
+                    })
+                    Spacer()
+                    Button(action: addPlayer, label: {
+                        Text("Add more")
+                    })
+                }
+                .padding(.horizontal, 70)
+                .buttonStyle(.bordered)
+            }
         }
     }
-    
-    func addPlayer() {
+
+    private func addPlayer() {
+        // Check if username is not empty
+        guard !username.isEmpty else { return }
+
+        // Add the player to the local state
         popupNameText = username
-        newPlayer.append(.init(name: username, points: 0))
-        self.displayPlayerNames.append(username)
+        localPlayers.append(.init(name: username, points: 0))
         displayActionMessage()
-        username = ""
+        username = "" // Clear the input field
+        
+        Logger.init().log("Player added: \(username)")
     }
-   
-    func complete() {
+
+    private func complete() {
         if !username.isEmpty {
             addPlayer()
         }
+        // Commit local changes to the binding and dismiss the sheet
+        newPlayer.append(contentsOf: localPlayers)
+        // add a logg right here
+        Logger.init().log("Players added: \(localPlayers)")
         dismiss()
     }
-    
-    func displayActionMessage(){
-        self.popupMessageTextShowing.toggle()
+
+    private func displayActionMessage() {
+        // Toggle the popup message on and off
+        withAnimation {
+            popupMessageTextShowing = true
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.popupMessageTextShowing.toggle()
+            withAnimation {
+                popupMessageTextShowing = false
+            }
         }
     }
-
-    
 }
 
 #Preview {

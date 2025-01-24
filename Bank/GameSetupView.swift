@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameSetupView: View {
     @State private var showingAddPlayersView = false
+    @State var players = [Player]()
     
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct GameSetupView: View {
                 .background(Color.blue)
                 .cornerRadius(8)
                 .fullScreenCover(isPresented: $showingAddPlayersView) {
-                    PlayersView()
+                    PlayersView(players: $players)
                 }
             }
         }
