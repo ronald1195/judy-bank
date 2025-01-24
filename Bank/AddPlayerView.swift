@@ -47,21 +47,20 @@ struct AddPlayerView: View {
 
         // Add the player to the local state
         popupNameText = username
+//        newPlayer.append(.init(name: username, points: 0))
         localPlayers.append(.init(name: username, points: 0))
         displayActionMessage()
         username = "" // Clear the input field
         
-        Logger.init().log("Player added: \(username)")
+      print("Player added: \(username)")
     }
 
     private func complete() {
         if !username.isEmpty {
             addPlayer()
         }
-        // Commit local changes to the binding and dismiss the sheet
+//         Commit local changes to the binding and dismiss the sheet
         newPlayer.append(contentsOf: localPlayers)
-        // add a logg right here
-        Logger.init().log("Players added: \(localPlayers)")
         dismiss()
     }
 
