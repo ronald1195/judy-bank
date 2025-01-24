@@ -30,79 +30,90 @@ struct CalculatorView: View {
                             .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
                     Button(action: {
                         addValue(value: 3)
                     }, label: {
                         Text("3")
                             .font(.title)
-                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)
+                            .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
                     Button(action: {
                         addValue(value: 4)
                     }, label: {
                         Text("4")
-                            .padding(.horizontal)
                             .font(.title)
-                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)
+                            .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
+                }
+                HStack{
                     Button(action: {
                         addValue(value: 5)
                     }, label: {
                         Text("5")
                             .font(.title)
-                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)
+                            .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
-                }
-                HStack{
                     Button(action: {
                         addValue(value: 6)
                     }, label: {
                         Text("6")
                             .font(.title)
-                            .frame(width:90, height: 90)                        .foregroundColor(.primary)
+                            .frame(width:90, height: 90)
+                            .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
                     Button(action: {
                         addValue(value: 7)
                     }, label: {
                         Text("7")
                             .font(.title)
-                            .foregroundColor(turn >= 3 ? Color.red : Color.green)
+                            .foregroundColor(Color.white)
                             .frame(width:90, height: 90)                        .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(turn >= 3 ? Color.red : Color.green, lineWidth: 2)
+                                    .stroke(turn >= 3 ? Color.red : Color.green, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(turn >= 3 ? Color.red.cornerRadius(50) : Color.green.cornerRadius(50))
                     })
+                }
+                HStack{
                     Button(action: {
                         addValue(value: 8)
                     }, label: {
@@ -111,10 +122,11 @@ struct CalculatorView: View {
                             .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
                     Button(action: {
                         addValue(value: 9)
@@ -124,25 +136,30 @@ struct CalculatorView: View {
                             .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
                             .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
-                }
-                HStack{
                     Button(action: {
                         addValue(value: 10)
                     }, label: {
                         Text("10")
                             .font(.title)
+                            .font(.title)
                             .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
+
+                }
+                HStack {
                     Button(action: {
                         addValue(value: 11)
                     }, label: {
@@ -151,9 +168,11 @@ struct CalculatorView: View {
                             .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
                     Button(action: {
                         addValue(value: 12)
@@ -163,9 +182,11 @@ struct CalculatorView: View {
                             .frame(width:90, height: 90)                        .foregroundColor(.primary)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color.primary, lineWidth: 2)
+                                    .stroke(Color.primary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
+                            .padding(.bottom, 1)
+                            .background(Color.secondary.opacity(0.4).cornerRadius(50))
                     })
                     Button(action: {
                         withAnimation(.spring(response: 0.4, dampingFraction: 0.3)) {
@@ -179,17 +200,17 @@ struct CalculatorView: View {
                     }) {
                         Text("X2")
                             .font(.title)
-                            .foregroundColor(turn >= 3 ? Color.orange : Color.gray)
+                            .foregroundColor(turn >= 3 ? Color.white : Color.secondary)
                             .frame(width:90, height: 90)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 50)
-                                    .stroke(turn >= 3 ? Color.orange : Color.gray, lineWidth: 2)
+                                    .stroke(turn >= 3 ? Color.primary : Color.secondary, lineWidth: 0)
                             )
                             .padding(.horizontal, 1)
+                            .background(turn >= 3 ? Color.orange.cornerRadius(50) : Color.secondary.opacity(0.2).cornerRadius(50))
                     }
                     .scaleEffect(isPressed ? 1.1 : 1.0)
                 }
-                
 //            }.frame(maxWidth: .infinity, maxHeight: .infinity)
 //                .border(Color.black, width: 1)
                 

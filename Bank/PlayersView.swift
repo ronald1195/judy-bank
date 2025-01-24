@@ -12,6 +12,7 @@ struct PlayersView: View {
     @State var numbers = [1,2,3,4]
     @State var players = [Player]()
     @State private var showingSheet = false
+    @State private var addPlayerSheet = false
     @State var gameViewActive = false
     
     var body: some View {
@@ -31,19 +32,41 @@ struct PlayersView: View {
                         .sheet(isPresented: $showingSheet) {
                             AddPlayerView(newPlayer: $players)
                         })
+                
+                if players.isEmpty {
+                    Text("Start by adding some players...")
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .position(CGPoint(x: UIScreen.main.bounds.size.width/2, y:-UIScreen.main.bounds.height/6))
+                        .foregroundStyle(.gray)
+//                    Button("Add Players") {
+//                        addPlayerSheet = true
+//                    }
+//                    .foregroundColor(.white)
+//                    .padding()
+//                    .background(Color.blue)
+//                    .cornerRadius(8)
+//                    .sheet(isPresented: $addPlayerSheet) {
+//                        AddPlayerView(newPlayer: $players)
+//                    }
+                }
+//                else {
+//                    Button(action: {startGame()}, label: {
+//                        Text("Start Game!")
+//                        .foregroundColor(.white)
+//                        .padding()
+//                        .background(Color.blue)
+//                        .cornerRadius(8)
+//                    })
+//                }
             }
-           
             
-            if players.isEmpty {
-                        Text("Start by adding some players...")
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .position(CGPoint(x: UIScreen.main.bounds.size.width/2, y:-UIScreen.main.bounds.height/6))
-                            .foregroundStyle(.gray)
-            }
-           
             Button(action: {startGame()}, label: {
                 Text("Start Game!")
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(8)
             })
         }
     }
