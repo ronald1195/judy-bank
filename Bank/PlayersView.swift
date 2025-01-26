@@ -18,87 +18,83 @@ struct PlayersView: View {
     @State var gameViewActive = false
     
     var body: some View {
-        VStack {
-            if players.isEmpty {
-                // First State: No players in the list
-                Text("No players added yet...")
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .foregroundStyle(Color.gray)
-                
-                Button(action: {
-                    showingAddPlayerView = true
-                }) {
-                    Text("Add Players")
+        NavigationView {
+            VStack {
+                if players.isEmpty {
+                    // First State: No players in the list
+                    Text("No players added yet...")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
                         .padding()
-                        .frame(width: 150)
-                        .background(Color.blue)
-                        .cornerRadius(50)
-                        .padding(.horizontal)
-                }
-                .sheet(isPresented: $showingAddPlayerView) {
-                    AddPlayerView(newPlayer: $players)
-                }
-            } else {
-                // Second State: Players exist in the list
-                NavigationView {
+                        .foregroundStyle(Color.gray)
+                    
+                    NavigationLink(destination: AddPlayerView(newPlayer: $players)) {
+                        Text("Add Players")
+                           .font(.headline)
+                           .foregroundColor(.white)
+                           .padding()
+                           .frame(width: 150)
+                           .background(Color.blue)
+                           .cornerRadius(50)
+                           .padding(.horizontal)
+                        
+                    }
+                } else {
+                    // Second State: Players exist in the list
                     List {
                         ForEach(players, id: \.self) { player in
                             PlayerRowView(player: player)
                         }
                         .onDelete(perform: deletePlayer)
                     }
-                    .navigationBarTitle("Players")}
-                
-                HStack {
-                    Button(action: {
-                        print("Game started with players: \(players.map { $0.name })")
-                        gameViewActive = true
-                    }) {
-                        Text("Start Game")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(players.isEmpty ? Color.gray : Color.green)
-                            .frame(width: 150)
-                            .cornerRadius(50)
-                            .fullScreenCover(isPresented: $gameViewActive) {
-                                PlayGameView(players: $players)
-                            }
-                    }
+                    .navigationBarTitle("Players")
                     
-                    Spacer()
-                    
-                    Button(action: {
-                        showingAddPlayerView = true
-                    }) {
-                        Text("Add More")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .frame(width: 150)
-                            .cornerRadius(50)
+                    HStack {
+                        Button(action: {
+                            print("Game started with players: \(players.map { $0.name })")
+                            gameViewActive = true
+                        }) {
+                            Text("Start Game")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(players.isEmpty ? Color.gray : Color.green)
+                                .frame(width: 150)
+                                .cornerRadius(50)
+                                .fullScreenCover(isPresented: $gameViewActive) {
+                                    PlayGameView(players: $players)
+                                }
+                        }
+                        
+                        Spacer()
+                        
+                        NavigationLink(destination: AddPlayerView(newPlayer: $players)) {
+                            Text("Add more")
+                               .font(.headline)
+                               .foregroundColor(.white)
+                               .padding()
+                               .frame(width: 150)
+                               .background(Color.blue)
+                               .cornerRadius(50)
+                               .padding(.horizontal)
+                            
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+            }
+            .sheet(isPresented: $showingAddPlayerView) {
+                AddPlayerView(newPlayer: $players)
             }
         }
-        .sheet(isPresented: $showingAddPlayerView) {
-            AddPlayerView(newPlayer: $players)
+    
+    }
+    
+
+        private func deletePlayer(at offsets: IndexSet) {
+            players.remove(atOffsets: offsets)
         }
-    
-    }
-    
-    private func deletePlayer(at offsets: IndexSet) {
-        players.remove(atOffsets: offsets)
-    }
-        
         
         
         
@@ -172,11 +168,11 @@ struct PlayersView: View {
 //                })
 //            }
 //        }
+//           
+//        
 //            
-//            
-////        }
 //    }
-    
+//    
 //    private func addItemToRow() {
 //        showingSheet.toggle()
 //    }
@@ -193,10 +189,8 @@ struct PlayersView: View {
 }
 
 #Preview {
-//    PlayersView()
     PlayersView(players: .constant([Player]()))
     
-//    PlayersView(players: .constant(Player.samples))
 }
 
 #Preview {

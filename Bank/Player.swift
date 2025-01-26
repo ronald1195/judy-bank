@@ -63,6 +63,13 @@ extension Player {
         .init(name: "Anum Mian",  points: 0)
     ]
     
+    static var final_game_samples: [Player] = [
+        .init(name: "Peter Friese", points: 1000),
+        .init(name: "Alex Kudelka",  points: 102),
+        .init(name: "Alexis Santos", points: 200),
+        .init(name: "Allison Mcentire",  points: 4)
+        ]
+    
     static var sample = samples[0]
     
     static var empty = Player(name: "", points: 0)
