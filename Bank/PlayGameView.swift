@@ -17,17 +17,6 @@ struct PlayGameView: View {
     @State private var showingPlayerListSheet = false
 
     var body: some View {
-//        Button(label: {
-//            Text("go to players page")
-//                .font(.headline)
-//                .foregroundColor(Color.white)
-//                .frame(width: 250, height: 75)
-//                .border(Color.red, width: 2)
-//        }
-//        .fullScreenCover(isPresented: $showingPlayersSheet) {
-//                                PlayersView(players: players)
-//                            }
-//
         Button("Back"){
             showingPlayerListSheet = true
         }
