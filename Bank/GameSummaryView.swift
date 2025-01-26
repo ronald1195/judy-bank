@@ -11,7 +11,7 @@ struct GameSummaryView: View  {
     @Binding var players: [Player]
     
     var body: some View {
-        VStack {
+        NavigationStack{
             List {
                 ForEach(players.sorted { $0.points > $1.points }) { player in
                     HStack {
@@ -22,7 +22,9 @@ struct GameSummaryView: View  {
                     }
                 }
             }
+            .navigationBarTitle("Game Summary")
         }
+        
     }
 }
 
