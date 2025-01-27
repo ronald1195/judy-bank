@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,22 +12,22 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bank.png" translatesAutoresizingMaskIntoConstraints="NO" id="tZR-xx-wf4">
-                                <rect key="frame" x="29" y="306" width="334" height="241"/>
-                                <color key="tintColor" red="0.56085216565360818" green="0.53488946551193339" blue="0.41812655513606767" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bank" translatesAutoresizingMaskIntoConstraints="NO" id="laG-Ug-oeB">
+                                <rect key="frame" x="76" y="306" width="240" height="240"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.91372549530000002" green="0.89411771299999998" blue="0.79607844350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="0.81999999999999995" alpha="0.9601668793" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tZR-xx-wf4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3jL-3Z-hjl"/>
-                            <constraint firstItem="tZR-xx-wf4" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="247" id="Kso-Is-sSo"/>
-                            <constraint firstItem="tZR-xx-wf4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="eiE-v5-4fr"/>
-                            <constraint firstItem="tZR-xx-wf4" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="29" id="hPD-HK-Bn6"/>
+                            <constraint firstItem="laG-Ug-oeB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-11" id="0Td-9h-dO3"/>
+                            <constraint firstItem="laG-Ug-oeB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-5" id="bWW-7b-olX"/>
+                            <constraint firstItem="laG-Ug-oeB" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="76" id="h5p-Ra-XJX"/>
+                            <constraint firstItem="laG-Ug-oeB" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="244" id="ugF-Zx-4ue"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bank.png" width="245.75999450683594" height="245.75999450683594"/>
+        <image name="bank" width="1024" height="1024"/>
     </resources>
 </document>
