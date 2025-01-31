@@ -26,7 +26,7 @@ struct GameSetupView: View {
                 .foregroundColor(.white)
                 .padding()
                 .background(Color.blue)
-                .cornerRadius(50)
+                .cornerRadius(25)
                 .fullScreenCover(isPresented: $showingAddPlayersView) {
                     PlayersView(players: $players)
                 }
