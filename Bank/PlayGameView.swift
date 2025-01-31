@@ -17,22 +17,24 @@ struct PlayGameView: View {
     @State private var showingPlayerListSheet = false
 
     var body: some View {
-        Button("Back"){
-            showingPlayerListSheet = true
-        }
-        .fullScreenCover(isPresented: $showingPlayerListSheet) {
-            PlayersView(players: $players)
-//            PlayersView()
-        }
-        
         VStack {
-            Text("Round: \(currentRound) / \(roundsToPlay)")
-                .font(.headline)
-                .padding(.bottom, 20)
-                .foregroundStyle(Color.primary)
-             
-            Spacer()
             if currentRound <= roundsToPlay {
+                
+                Button("Back"){
+                    showingPlayerListSheet = true
+                }
+                .fullScreenCover(isPresented: $showingPlayerListSheet) {
+                    PlayersView(players: $players)
+        //            PlayersView()
+                }
+                
+                Text("Round: \(currentRound) / \(roundsToPlay)")
+                    .font(.headline)
+                    .padding(.bottom, 20)
+                    .foregroundStyle(Color.primary)
+                 
+                Spacer()
+                
                 CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $players)
                 
                 Button(action: {bankButtonClick()}, label: {
@@ -61,7 +63,8 @@ struct PlayGameView: View {
                 
             }
             else {
-                Text("check results")
+                // Show the GameSummaryView once the game is over
+                GameSummaryView(players: $players)
             }
         }
     }
@@ -70,12 +73,12 @@ struct PlayGameView: View {
         gamePoints += roundPoints
         showingPlayersSheet.toggle()
     }
-                    
-//    func playersSheetButtonClick() {
-//
-//    }
 }
 
 #Preview {
     PlayGameView(players: .constant([Player]()))
+}
+
+#Preview {
+    PlayGameView(players: .constant(Player.final_game_samples))
 }
