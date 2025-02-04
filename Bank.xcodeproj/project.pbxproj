@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,13 @@
 		D9F458992BB1417D00B3BFCB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D9A3C2802D4F39670028075A /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
+		D9A3C2842D51EE310028075A /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		D9A3C2852D51EE470028075A /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		D9A3C2872D51EE630028075A /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		D9F4587F2BA4EE1100B3BFCB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -73,6 +80,10 @@
 		D9F458842BA4EE1100B3BFCB /* Bank */ = {
 			isa = PBXGroup;
 			children = (
+				D9A3C2872D51EE630028075A /* ViewModels */,
+				D9A3C2852D51EE470028075A /* Models */,
+				D9A3C2842D51EE310028075A /* Views */,
+				D9A3C2802D4F39670028075A /* Utils */,
 				D9A3C2762D3F7CF90028075A /* Colors.swift */,
 				D9F458852BA4EE1100B3BFCB /* BankApp.swift */,
 				D9F458872BA4EE1100B3BFCB /* ContentView.swift */,
@@ -114,6 +125,12 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D9A3C2802D4F39670028075A /* Utils */,
+				D9A3C2842D51EE310028075A /* Views */,
+				D9A3C2852D51EE470028075A /* Models */,
+				D9A3C2872D51EE630028075A /* ViewModels */,
 			);
 			name = Bank;
 			productName = Bank;

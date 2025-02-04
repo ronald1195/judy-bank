@@ -88,7 +88,6 @@ struct PlayersView: View {
                 AddPlayerView(newPlayer: $players)
             }
         }
-    
     }
     
 
