@@ -182,7 +182,6 @@ struct PlayersView: View {
 //                }
 //    }
 //    
-
 }
 
 #Preview {
