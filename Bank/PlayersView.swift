@@ -181,7 +181,6 @@ struct PlayersView: View {
 //                    players.remove(at: first)
 //                }
 //    }
-//    
 }
 
 #Preview {
