@@ -182,9 +182,7 @@ struct PlayersView: View {
 //                }
 //    }
 //    
-//    private func startGame() {
-//        gameViewActive.toggle()
-//    }
+
 }
 
 #Preview {
