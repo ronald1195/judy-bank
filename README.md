@@ -36,4 +36,3 @@ Additional notes:
 * The first three rolls of each round have unique rules that can significantly impact the Bank total.
 
 Enjoy playing Bank, and may the dice roll in your favor!
-
