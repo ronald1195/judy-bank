@@ -11,7 +11,8 @@ struct PlayGameView: View {
     var roundsToPlay = 10
     @State var currentRound = 1
     @State var gamePoints = 0
-    @Binding var players: [Player]
+//    @Binding var players: [Player]
+    @EnvironmentObject var gameManager: GameManager
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
     @State private var showingPlayerListSheet = false
@@ -24,8 +25,8 @@ struct PlayGameView: View {
                     showingPlayerListSheet = true
                 }
                 .fullScreenCover(isPresented: $showingPlayerListSheet) {
-                    PlayersView(players: $players)
-        //            PlayersView()
+//                    PlayersView(players: $players)
+                    PlayersView()
                 }
                 
                 Text("Round: \(currentRound) / \(roundsToPlay)")
@@ -35,7 +36,7 @@ struct PlayGameView: View {
                  
                 Spacer()
                 
-                CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $players)
+                CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $gameManager.players)
                 
                 Button(action: {bankButtonClick()}, label: {
                     Text("Bank!")
@@ -52,7 +53,7 @@ struct PlayGameView: View {
                         .padding(.top)
                 })
                 .sheet(isPresented: $showingPlayersSheet) {
-                    PlayersBankView(bankingPoints: roundPoints, players: players, isPresented: $showingPlayersSheet)
+//                    PlayersBankView(bankingPoints: roundPoints, players: gameManager.players, isPresented: $showingPlayersSheet)
                 }
                 
                 Text("Round points: $\(roundPoints)")
@@ -64,7 +65,7 @@ struct PlayGameView: View {
             }
             else {
                 // Show the GameSummaryView once the game is over
-                GameSummaryView(players: $players)
+//                GameSummaryView(players: $gameManager.players)
             }
         }
     }
@@ -76,9 +77,11 @@ struct PlayGameView: View {
 }
 
 #Preview {
-    PlayGameView(players: .constant([Player]()))
+    PlayGameView()
+        .environmentObject(GameManager())
 }
 
 #Preview {
-    PlayGameView(players: .constant(Player.final_game_samples))
+    PlayGameView()
+        .environmentObject(GameManager(players: Player.final_game_samples))
 }

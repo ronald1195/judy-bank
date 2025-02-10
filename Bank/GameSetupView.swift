@@ -9,26 +9,30 @@ import SwiftUI
 
 struct GameSetupView: View {
     @State private var showingAddPlayersView = false
-    @State var players = [Player]()
+    @EnvironmentObject var gameManager: GameManager
     
     var body: some View {
         ZStack {
-            Color.bank_beige
+            Color.maroon
                 .edgesIgnoringSafeArea(.all)
+                .overlay(Color.black.opacity(0.20))
             VStack {
-                Image("bank")
-                    .resizable()
-                    .scaledToFit()
+                
+                Text("Bank!")
+                    .font(.custom("SnellRoundhand-Black", size: 50))
+                    .bold()
+                    .foregroundColor(.white)
+                    .foregroundColor(.white)
                 
                 Button("Start Game") {
                     showingAddPlayersView = true
                 }
                 .foregroundColor(.white)
                 .padding()
-                .background(Color.blue)
+                .background(Color.black.opacity(0.5))
                 .cornerRadius(25)
                 .fullScreenCover(isPresented: $showingAddPlayersView) {
-                    PlayersView(players: $players)
+                    PlayersView()
                 }
             }
         }
@@ -37,4 +41,5 @@ struct GameSetupView: View {
 
 #Preview {
     GameSetupView()
+        .environmentObject(GameManager())
 }

@@ -3,12 +3,13 @@ import os
 import Foundation
 
 struct AddPlayerView: View {
-    @Binding var newPlayer: [Player] // Binding to parent view
+//    @Binding var newPlayer: [Player] // Binding to parent view
     @State private var localPlayers = [Player]() // Local state for added players
     @State private var username: String = "" // Temporary username input
     @Environment(\.dismiss) var dismiss // Environment dismiss for closing the sheet
     @State private var popupMessageTextShowing = false
     @State private var popupNameText = ""
+    @EnvironmentObject var gameManager: GameManager
 
     var body: some View {
         VStack {
@@ -61,7 +62,7 @@ struct AddPlayerView: View {
             addPlayer()
         }
 //         Commit local changes to the binding and dismiss the sheet
-        newPlayer.append(contentsOf: localPlayers)
+        gameManager.players.append(contentsOf: localPlayers)
         dismiss()
     }
 
@@ -79,5 +80,6 @@ struct AddPlayerView: View {
 }
 
 #Preview {
-    AddPlayerView(newPlayer: .constant([Player]()))
+    AddPlayerView()
+        .environmentObject(GameManager())
 }
