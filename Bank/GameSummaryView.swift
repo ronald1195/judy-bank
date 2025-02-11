@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct GameSummaryView: View  {
-    @Binding var players: [Player]
-    
+    @EnvironmentObject var gameManager: GameManager
+
     var body: some View {
         NavigationStack{
             List {
-                ForEach(players.sorted { $0.points > $1.points }) { player in
+                ForEach(gameManager.players.sorted { $0.points > $1.points }) { player in
                     HStack {
                         Text(player.name)
                         Spacer()
@@ -29,5 +29,6 @@ struct GameSummaryView: View  {
 }
 
 #Preview {
-    GameSummaryView(players: .constant(Player.final_game_samples))
+    GameSummaryView()
+        .environmentObject(GameManager(players: Player.final_game_samples))
 }

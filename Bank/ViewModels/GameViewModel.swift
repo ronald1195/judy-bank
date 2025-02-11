@@ -6,7 +6,15 @@
 //
 import Foundation
 
-class GameViewModel: ObservableObject {
+class GameManager: ObservableObject {
     @Published var players: [Player] = []
     //... other game-related data and methods...
+    
+    init() {
+         // Default init with no players
+     }
+
+     init(players: [Player]) {
+         self.players = players
+     }
 }

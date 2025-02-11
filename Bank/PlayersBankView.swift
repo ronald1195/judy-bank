@@ -48,14 +48,14 @@ struct MultiselectRow: View {
 
 struct PlayersBankView: View {
     @State var bankingPoints: Int
-    @State var players: [Player]
+    @EnvironmentObject var gameManager: GameManager
     @State private var selectedPlayers = Set<UUID>()
     @Binding var isPresented: Bool
     
     var body: some View {
         VStack{
             NavigationView {
-                List(players, selection: $selectedPlayers) { player in
+                List(gameManager.players, selection: $selectedPlayers) { player in
                     MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
 
                 }
@@ -73,10 +73,10 @@ struct PlayersBankView: View {
     }
    
     func applyPointsToUsers() {
-        for index in players.indices {
-            let player = players[index]
+        for index in gameManager.players.indices {
+            let player = gameManager.players[index]
             if selectedPlayers.contains(player.id) {
-                players[index].addPoints(pointsToBeAdded: bankingPoints)
+                gameManager.players[index].addPoints(pointsToBeAdded: bankingPoints)
             }
             isPresented = false
         }
@@ -85,13 +85,14 @@ struct PlayersBankView: View {
 }
 
 #Preview {
-    PlayersBankView(bankingPoints: 100, players: Player.samples, isPresented: .constant(true))
+    PlayersBankView(bankingPoints: 100, isPresented: .constant(true))
+        .environmentObject(GameManager(players: Player.samples))
 
 }
 
 #Preview {
-    PlayersBankView(bankingPoints: 0, players: Player.samples, isPresented: .constant(true))
-
+    PlayersBankView(bankingPoints: 0, isPresented: .constant(true))
+        .environmentObject(GameManager(players: Player.samples))
 }
 
 
