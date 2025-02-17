@@ -110,7 +110,7 @@ struct PlayersView: View {
                           .font(.headline)
                           .foregroundColor(.white)
                           .padding()
-                          .frame(width: 150)
+                          .frame(width: 150, height: 60)
                           .background(Color.blue)
                           .cornerRadius(50)
                     }.sheet(isPresented: $showingAddPlayerView) {
@@ -127,9 +127,8 @@ struct PlayersView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
-                            .frame(maxWidth: .infinity)
+                            .frame(width: 150, height: 60)
                             .background(gameManager.players.isEmpty ? Color.gray : Color.green)
-                            .frame(width: 150)
                             .cornerRadius(50)
                             .fullScreenCover(isPresented: $gameViewActive) {
                                 PlayGameView()

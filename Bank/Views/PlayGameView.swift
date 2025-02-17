@@ -73,7 +73,7 @@ struct PlayGameView: View {
 
 #Preview {
     PlayGameView()
-        .environmentObject(GameManager())
+        .environmentObject(GameManager(players: Player.samples))
 }
 
 #Preview {

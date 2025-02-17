@@ -19,6 +19,7 @@ struct PlayerRowView: View {
             Text("$ \(player.points)")
                 .font(.title3)
         }
+        .frame(height: 40)
         .padding(.horizontal)
     }
 }

@@ -56,16 +56,16 @@ struct PlayersBankView: View {
         VStack{
             List(gameManager.players, selection: $selectedPlayers) { player in
                 MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
+                    .font(.headline)
                     .listRowSeparator(.hidden)
                     .listRowBackground(Capsule().fill(Color.black.opacity(0.1)).padding(2))
-                        
             }
             .scrollContentBackground(.hidden)
 
             
             Button(action: { applyPointsToUsers() }, label: {
                             Text("Apply Points")
-                                .frame(maxWidth: .infinity, minHeight: 44)
+                                .frame(width: 300, height: 75)
                                 .background(bankingPoints == 0 ? Color.gray : Color.blue)
                                 .foregroundColor(.white)
                                 .font(.headline)
