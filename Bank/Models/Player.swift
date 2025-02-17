@@ -7,17 +7,6 @@
 
 import Foundation
 
-//struct Player: Identifiable, Hashable{
-//    let id = UUID()
-//    let name: String
-//    var points: Int
-//    var active = true
-//    
-//    mutating func addPoints(pointsToBeAdded : Int) {
-//        points += pointsToBeAdded
-//    }
-//}
-
 class Player: Identifiable, Hashable {
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.id == rhs.id

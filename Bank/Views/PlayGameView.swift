@@ -11,7 +11,6 @@ struct PlayGameView: View {
     var roundsToPlay = 10
     @State var currentRound = 1
     @State var gamePoints = 0
-//    @Binding var players: [Player]
     @EnvironmentObject var gameManager: GameManager
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
@@ -25,7 +24,6 @@ struct PlayGameView: View {
                     showingPlayerListSheet = true
                 }
                 .fullScreenCover(isPresented: $showingPlayerListSheet) {
-//                    PlayersView(players: $players)
                     PlayersView()
                 }
                 

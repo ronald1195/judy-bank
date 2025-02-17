@@ -14,9 +14,6 @@ struct CalculatorView: View {
     @Binding var players: [Player] // Pass players as a binding
     @State private var isPressed = false // Tracks whether the button is pressed
 
-
-    
-    
     var body: some View {
 //        GeometryReader { geometry in
             VStack{

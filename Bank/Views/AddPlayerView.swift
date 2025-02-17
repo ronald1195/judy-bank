@@ -3,7 +3,6 @@ import os
 import Foundation
 
 struct AddPlayerView: View {
-//    @Binding var newPlayer: [Player] // Binding to parent view
     @State private var localPlayers = [Player]() // Local state for added players
     @State private var username: String = "" // Temporary username input
     @Environment(\.dismiss) var dismiss // Environment dismiss for closing the sheet
