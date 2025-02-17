@@ -53,7 +53,7 @@ struct PlayGameView: View {
                         .padding(.top)
                 })
                 .sheet(isPresented: $showingPlayersSheet) {
-//                    PlayersBankView(bankingPoints: roundPoints, players: gameManager.players, isPresented: $showingPlayersSheet)
+                    PlayersBankView(bankingPoints: roundPoints, isPresented: $showingPlayersSheet)
                 }
                 
                 Text("Round points: $\(roundPoints)")
@@ -64,8 +64,8 @@ struct PlayGameView: View {
                 
             }
             else {
-                // Show the GameSummaryView once the game is over
-//                GameSummaryView(players: $gameManager.players)
+//                 Show the GameSummaryView once the game is over
+                GameSummaryView()
             }
         }
     }
