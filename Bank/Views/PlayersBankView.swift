@@ -54,12 +54,28 @@ struct PlayersBankView: View {
     
     var body: some View {
         VStack{
-            NavigationView {
-                List(gameManager.players, selection: $selectedPlayers) { player in
-                    MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
+//            NavigationView {
+//                List(gameManager.players, selection: $selectedPlayers) { player in
+//                    MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
+//
+//                }
+//                .listRowSeparator(.hidden)
+//                .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
+//                .padding(2))
+//            }
+            List {
+                Section{
+                    ForEach(gameManager.players, id: \.self) { player in
+                        PlayerRowView(player: player)
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
+                    .padding(2))
 
                 }
             }
+            .scrollContentBackground(.hidden)
+            
             Button(action: { applyPointsToUsers() }, label: {
                             Text("Apply Points")
                                 .frame(maxWidth: .infinity, minHeight: 44)

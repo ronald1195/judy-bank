@@ -94,7 +94,7 @@ struct PlayersView: View {
                         }
                         .onDelete(perform: deletePlayer)
                         .listRowSeparator(.hidden)
-                        .listRowBackground(Capsule().fill(Color.white.opacity(0.8))
+                        .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
                             .padding(2))
 
                     } header: { Text("Players") }
