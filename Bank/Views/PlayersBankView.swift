@@ -54,34 +54,23 @@ struct PlayersBankView: View {
     
     var body: some View {
         VStack{
-//            NavigationView {
-//                List(gameManager.players, selection: $selectedPlayers) { player in
-//                    MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
-//
-//                }
-//                .listRowSeparator(.hidden)
-//                .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
-//                .padding(2))
-//            }
-            List {
-                Section{
-                    ForEach(gameManager.players, id: \.self) { player in
-                        PlayerRowView(player: player)
-                    }
+            List(gameManager.players, selection: $selectedPlayers) { player in
+                MultiselectRow(player: player, selectedItems: $selectedPlayers, newPoints: $bankingPoints)
                     .listRowSeparator(.hidden)
-                    .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
-                    .padding(2))
-
-                }
+                    .listRowBackground(Capsule().fill(Color.black.opacity(0.1)).padding(2))
+                        
             }
             .scrollContentBackground(.hidden)
+
             
             Button(action: { applyPointsToUsers() }, label: {
                             Text("Apply Points")
                                 .frame(maxWidth: .infinity, minHeight: 44)
                                 .background(bankingPoints == 0 ? Color.gray : Color.blue)
                                 .foregroundColor(.white)
-                                .cornerRadius(8)
+                                .font(.headline)
+                                .background(Color.blue)
+                                .cornerRadius(50)
                         })
                         .disabled(bankingPoints == 0) // Disable when no points
                         .padding()

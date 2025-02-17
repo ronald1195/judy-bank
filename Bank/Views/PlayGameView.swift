@@ -58,11 +58,8 @@ struct PlayGameView: View {
                     .font(.headline)
                     .padding()
                     .foregroundStyle(Color.primary)
-                 
-                
             }
             else {
-//                 Show the GameSummaryView once the game is over
                 GameSummaryView()
             }
         }
