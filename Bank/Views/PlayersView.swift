@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayersView: View {
+    @State private var showingSettingsView = false
     @State private var showingSheet = false
     @State private var showingAddPlayerView = false
     @State var gameViewActive = false
@@ -87,6 +88,25 @@ struct PlayersView: View {
             }
             else {
                 // Second State: Players exist in the list
+                HStack {
+                    Button(action: {
+                        showingSettingsView = true
+                    }) {
+                        Image(systemName: "house")
+                            .font(.system(size: 20))
+                            .foregroundColor(.gray)
+                            .bold()
+                            .padding(16)
+                    }
+                    .padding(.horizontal)
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                    .fullScreenCover(isPresented: $showingSettingsView) {
+                        GameSetupView()
+                    }
+                    
+                    Spacer()
+                }
                 List {
                     Section{
                         ForEach(gameManager.players, id: \.self) { player in
