@@ -20,17 +20,23 @@ struct PlayGameView: View {
         VStack {
             if currentRound <= roundsToPlay {
                 
-                Button("Back"){
-                    showingPlayerListSheet = true
-                }
-                .fullScreenCover(isPresented: $showingPlayerListSheet) {
-                    PlayersView()
-                }
-                
-                Text("Round: \(currentRound) / \(roundsToPlay)")
+                HStack {
+                    Button("Back"){
+                        showingPlayerListSheet = true
+                    }
+                    .padding(.horizontal)
                     .font(.headline)
-                    .padding(.bottom, 20)
-                    .foregroundStyle(Color.primary)
+                    .fullScreenCover(isPresented: $showingPlayerListSheet) {
+                        PlayersView()
+                    }
+                    
+                    Spacer()
+        
+                    Text("Round: \(currentRound) / \(roundsToPlay)")
+                        .font(.headline)
+                        .foregroundStyle(Color.primary)
+                        .padding(.horizontal)
+                }
                  
                 Spacer()
                 
