@@ -21,14 +21,29 @@ struct PlayGameView: View {
             if currentRound <= roundsToPlay {
                 
                 HStack {
-                    Button("Back"){
+//                    Button("Back"){
+//                        showingPlayerListSheet = true
+//                    }
+//                    .padding(.horizontal)
+//                    .font(.headline)
+//                    .fullScreenCover(isPresented: $showingPlayerListSheet) {
+//                        PlayersView()
+//                    }
+                    
+                    Button(action: {
                         showingPlayerListSheet = true
+                    }) {
+                        Image(systemName: "arrow.backward")
+                            .font(.system(size: 25))
+                            .foregroundColor(.blue)
+                            .bold()
                     }
-                    .padding(.horizontal)
                     .font(.headline)
+                    .foregroundColor(.gray)
                     .fullScreenCover(isPresented: $showingPlayerListSheet) {
                         PlayersView()
                     }
+                    .padding(.horizontal)
                     
                     Spacer()
         
@@ -74,6 +89,10 @@ struct PlayGameView: View {
     private func bankButtonClick() {
         gamePoints += roundPoints
         showingPlayersSheet.toggle()
+    }
+
+    private func changeValue() {
+        showingPlayerListSheet = true
     }
 }
 
