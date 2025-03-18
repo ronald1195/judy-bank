@@ -208,9 +208,6 @@ struct CalculatorView: View {
                     }
                     .scaleEffect(isPressed ? 1.1 : 1.0)
                 }
-//            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-//                .border(Color.black, width: 1)
-                
         }//.border(Color.black, width: 1)
     }
     

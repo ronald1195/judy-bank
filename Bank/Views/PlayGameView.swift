@@ -19,17 +19,7 @@ struct PlayGameView: View {
     var body: some View {
         VStack {
             if currentRound <= roundsToPlay {
-                
                 HStack {
-//                    Button("Back"){
-//                        showingPlayerListSheet = true
-//                    }
-//                    .padding(.horizontal)
-//                    .font(.headline)
-//                    .fullScreenCover(isPresented: $showingPlayerListSheet) {
-//                        PlayersView()
-//                    }
-                    
                     Button(action: {
                         showingPlayerListSheet = true
                     }) {

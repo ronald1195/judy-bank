@@ -48,7 +48,6 @@ struct AddPlayerView: View {
         // Add the player to the local state
         popupNameText = username
         print("Player added: \(username)")
-//        newPlayer.append(.init(name: username, points: 0))
         localPlayers.append(.init(name: username, points: 0))
         displayActionMessage()
         username = "" // Clear the input field
