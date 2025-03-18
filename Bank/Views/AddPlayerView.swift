@@ -60,7 +60,6 @@ struct AddPlayerView: View {
         if !username.isEmpty {
             addPlayer()
         }
-//         Commit local changes to the binding and dismiss the sheet
         gameManager.players.append(contentsOf: localPlayers)
         dismiss()
     }
