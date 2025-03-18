@@ -11,7 +11,6 @@ struct PlayGameView: View {
     var roundsToPlay = 10
     @State var currentRound = 1
     @State var gamePoints = 0
-//    @Binding var players: [Player]
     @EnvironmentObject var gameManager: GameManager
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
@@ -20,19 +19,29 @@ struct PlayGameView: View {
     var body: some View {
         VStack {
             if currentRound <= roundsToPlay {
-                
-                Button("Back"){
-                    showingPlayerListSheet = true
-                }
-                .fullScreenCover(isPresented: $showingPlayerListSheet) {
-//                    PlayersView(players: $players)
-                    PlayersView()
-                }
-                
-                Text("Round: \(currentRound) / \(roundsToPlay)")
+                HStack {
+                    Button(action: {
+                        showingPlayerListSheet = true
+                    }) {
+                        Image(systemName: "arrow.backward")
+                            .font(.system(size: 25))
+                            .foregroundColor(.blue)
+                            .bold()
+                    }
                     .font(.headline)
-                    .padding(.bottom, 20)
-                    .foregroundStyle(Color.primary)
+                    .foregroundColor(.gray)
+                    .fullScreenCover(isPresented: $showingPlayerListSheet) {
+                        PlayersView()
+                    }
+                    .padding(.horizontal)
+                    
+                    Spacer()
+        
+                    Text("Round: \(currentRound) / \(roundsToPlay)")
+                        .font(.headline)
+                        .foregroundStyle(Color.primary)
+                        .padding(.horizontal)
+                }
                  
                 Spacer()
                 
@@ -53,19 +62,16 @@ struct PlayGameView: View {
                         .padding(.top)
                 })
                 .sheet(isPresented: $showingPlayersSheet) {
-//                    PlayersBankView(bankingPoints: roundPoints, players: gameManager.players, isPresented: $showingPlayersSheet)
+                    PlayersBankView(bankingPoints: roundPoints, isPresented: $showingPlayersSheet)
                 }
                 
                 Text("Round points: $\(roundPoints)")
                     .font(.headline)
                     .padding()
                     .foregroundStyle(Color.primary)
-                 
-                
             }
             else {
-                // Show the GameSummaryView once the game is over
-//                GameSummaryView(players: $gameManager.players)
+                GameSummaryView()
             }
         }
     }
@@ -74,11 +80,15 @@ struct PlayGameView: View {
         gamePoints += roundPoints
         showingPlayersSheet.toggle()
     }
+
+    private func changeValue() {
+        showingPlayerListSheet = true
+    }
 }
 
 #Preview {
     PlayGameView()
-        .environmentObject(GameManager())
+        .environmentObject(GameManager(players: Player.samples))
 }
 
 #Preview {

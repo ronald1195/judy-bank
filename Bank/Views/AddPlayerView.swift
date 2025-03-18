@@ -3,7 +3,6 @@ import os
 import Foundation
 
 struct AddPlayerView: View {
-//    @Binding var newPlayer: [Player] // Binding to parent view
     @State private var localPlayers = [Player]() // Local state for added players
     @State private var username: String = "" // Temporary username input
     @Environment(\.dismiss) var dismiss // Environment dismiss for closing the sheet
@@ -49,7 +48,6 @@ struct AddPlayerView: View {
         // Add the player to the local state
         popupNameText = username
         print("Player added: \(username)")
-//        newPlayer.append(.init(name: username, points: 0))
         localPlayers.append(.init(name: username, points: 0))
         displayActionMessage()
         username = "" // Clear the input field
@@ -61,7 +59,6 @@ struct AddPlayerView: View {
         if !username.isEmpty {
             addPlayer()
         }
-//         Commit local changes to the binding and dismiss the sheet
         gameManager.players.append(contentsOf: localPlayers)
         dismiss()
     }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GameSetupView: View {
     @State private var showingAddPlayersView = false
+    @State private var showingLeaderboardView = false
+    @State private var showingSettingsView = false
     @EnvironmentObject var gameManager: GameManager
     
     var body: some View {
@@ -30,9 +32,10 @@ struct GameSetupView: View {
                     showingAddPlayersView = true
                 }
                 .foregroundColor(.white)
+                .frame(width: 140, height: 40)
                 .padding()
                 .background(Color.black.opacity(0.5))
-                .cornerRadius(25)
+                .cornerRadius(50)
                 .fullScreenCover(isPresented: $showingAddPlayersView) {
                     PlayersView()
                 }
@@ -41,7 +44,7 @@ struct GameSetupView: View {
                 
                 HStack {
                     Button(action: {
-                        print("Leaderboard button pressed")
+                        showingLeaderboardView = true
                     }) {
                         Image(systemName: "person.3.fill")
                             .font(.system(size: 30))
@@ -52,10 +55,13 @@ struct GameSetupView: View {
                     .padding()
                     .font(.headline)
                     .foregroundColor(.gray)
+                    .popover(isPresented: $showingLeaderboardView) {
+                        LeaderboardView()
+                    }
                     
                     Spacer()
                     Button(action: {
-                        print("Game settings button pressed")
+                        showingSettingsView = true
                     }) {
                         Image(systemName: "gearshape.fill")
                             .font(.system(size: 30))
@@ -66,6 +72,9 @@ struct GameSetupView: View {
                     .padding()
                     .font(.headline)
                     .foregroundColor(.gray)
+                    .popover(isPresented: $showingSettingsView) {
+                        SettingsView()
+                    }
                 }
             }
         }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayersView: View {
+    @State private var showingSettingsView = false
     @State private var showingSheet = false
     @State private var showingAddPlayerView = false
     @State var gameViewActive = false
@@ -87,6 +88,25 @@ struct PlayersView: View {
             }
             else {
                 // Second State: Players exist in the list
+                HStack {
+                    Button(action: {
+                        showingSettingsView = true
+                    }) {
+                        Image(systemName: "house")
+                            .font(.system(size: 20))
+                            .foregroundColor(.gray)
+                            .bold()
+                            .padding(16)
+                    }
+                    .padding(.horizontal)
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                    .fullScreenCover(isPresented: $showingSettingsView) {
+                        GameSetupView()
+                    }
+                    
+                    Spacer()
+                }
                 List {
                     Section{
                         ForEach(gameManager.players, id: \.self) { player in
@@ -94,7 +114,7 @@ struct PlayersView: View {
                         }
                         .onDelete(perform: deletePlayer)
                         .listRowSeparator(.hidden)
-                        .listRowBackground(Capsule().fill(Color.white.opacity(0.8))
+                        .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
                             .padding(2))
 
                     } header: { Text("Players") }
@@ -110,7 +130,7 @@ struct PlayersView: View {
                           .font(.headline)
                           .foregroundColor(.white)
                           .padding()
-                          .frame(width: 150)
+                          .frame(width: 150, height: 60)
                           .background(Color.blue)
                           .cornerRadius(50)
                     }.sheet(isPresented: $showingAddPlayerView) {
@@ -127,9 +147,8 @@ struct PlayersView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
-                            .frame(maxWidth: .infinity)
+                            .frame(width: 150, height: 60)
                             .background(gameManager.players.isEmpty ? Color.gray : Color.green)
-                            .frame(width: 150)
                             .cornerRadius(50)
                             .fullScreenCover(isPresented: $gameViewActive) {
                                 PlayGameView()
