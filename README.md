@@ -37,7 +37,3 @@ Additional notes:
 
 Enjoy playing Bank, and may the dice roll in your favor!
 
-daily
-daily
-daily
-daily
