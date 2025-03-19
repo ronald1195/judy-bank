@@ -43,6 +43,18 @@ struct GameSummaryView: View  {
     }
     
     func resetGame() {
+        // Convert gameManager.players to PlayerResult array with correct positions
+        let playerResults = gameManager.players.enumerated().map { (index, player) in
+            PlayerResult(name: player.name, score: player.points, position: index + 1)
+        }
+        
+        // Update the leaderboard
+        addPlayersToLeaderboard(players: playerResults)
+        
+        showingStartGameWindow = true
+        gameManager.players.removeAll()
+        
+        // Reset the game
         showingStartGameWindow = true
         gameManager.players.removeAll()
     }
