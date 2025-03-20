@@ -12,11 +12,26 @@ struct CalculatorView: View {
     @State var turn = 0
     @Binding var round: Int
     @Binding var players: [Player] // Pass players as a binding
-    @State private var isPressed = false // Tracks whether the button is pressed
+    @State private var isPressed = false // Tracks whether the button is pressed]
+    @State private var rollingUserIndex = 0
 
     var body: some View {
 //        GeometryReader { geometry in
             VStack{
+                HStack{
+                    if players.isEmpty {
+                        Text("No Players...")
+                    }
+                    else {
+                        Text("Now rolling:  \(players[rollingUserIndex].name)")
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 60)
+                .padding(.bottom, 10)
+                .foregroundStyle(.secondary)
+                .font(.title3)
+                
                 HStack{
                     Button(action: {
                         addValue(value: 2)
@@ -223,6 +238,8 @@ struct CalculatorView: View {
             roundPoints += value
             incrementTurn()
         }
+        
+        handleRollingUser()
     }
     
     func doublePoints() {
@@ -230,6 +247,8 @@ struct CalculatorView: View {
             roundPoints *= 2
             incrementTurn()
         }
+        
+        handleRollingUser()
     }
     
     func incrementTurn() {
@@ -242,13 +261,25 @@ struct CalculatorView: View {
         round += 1
         
         // Reset all players to active
-                for player in players {
-                    player.resetStatus()
-                }
+        for player in players {
+            player.resetStatus()
+        }
+    }
+    
+    func handleRollingUser() {
+        rollingUserIndex += 1
+        
+        if rollingUserIndex >= players.count {
+            rollingUserIndex = 0
+        }
     }
     
 }
 
 #Preview {
     CalculatorView(roundPoints: .constant(0), round: .constant(1), players: .constant([Player]()))
+}
+
+#Preview {
+    CalculatorView(roundPoints: .constant(0), round: .constant(1), players: .constant(Player.samples))
 }

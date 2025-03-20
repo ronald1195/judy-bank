@@ -42,9 +42,9 @@ struct PlayGameView: View {
                         .foregroundStyle(Color.primary)
                         .padding(.horizontal)
                 }
-                 
+
                 Spacer()
-                
+
                 CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $gameManager.players)
                 
                 Button(action: {bankButtonClick()}, label: {

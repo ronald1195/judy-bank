@@ -26,6 +26,7 @@ struct LeaderboardView: View {
                 .onAppear {
                     checkLeaderboard()
                 }
+                .foregroundStyle(.secondary)
             }
             // Once there is player data in the leaderboard
             else {
