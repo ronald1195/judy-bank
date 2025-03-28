@@ -1,10 +1,3 @@
-//
-//  PlayGameView.swift
-//  Bank
-//
-//  Created by Ronald Muñoz on 3/29/24.
-//
-
 import SwiftUI
 
 struct PlayGameView: View {
@@ -14,14 +7,16 @@ struct PlayGameView: View {
     @EnvironmentObject var gameManager: GameManager
     @State var roundPoints = 0
     @State private var showingPlayersSheet = false
-    @State private var showingPlayerListSheet = false
-
+    @State private var navigateToSummary = false // Add this state
+    @Binding var path: NavigationPath
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack {
             if currentRound <= roundsToPlay {
                 HStack {
                     Button(action: {
-                        showingPlayerListSheet = true
+                        dismiss()
                     }) {
                         Image(systemName: "arrow.backward")
                             .font(.system(size: 25))
@@ -30,30 +25,27 @@ struct PlayGameView: View {
                     }
                     .font(.headline)
                     .foregroundColor(.gray)
-                    .fullScreenCover(isPresented: $showingPlayerListSheet) {
-                        PlayersView()
-                    }
                     .padding(.horizontal)
                     
                     Spacer()
-        
+                    
                     Text("Round: \(currentRound) / \(roundsToPlay)")
                         .font(.headline)
                         .foregroundStyle(Color.primary)
                         .padding(.horizontal)
                 }
-
+                
                 Spacer()
-
+                
                 CalculatorView(roundPoints: $roundPoints, round: $currentRound, players: $gameManager.players)
                 
-                Button(action: {bankButtonClick()}, label: {
+                Button(action: { bankButtonClick() }, label: {
                     Text("Bank!")
                         .font(.headline)
                         .foregroundColor(Color.white)
                         .frame(width: 250, height: 75)
                         .border(Color.red, width: 2)
-                        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.red/*@END_MENU_TOKEN@*/)
+                        .background(Color.red)
                         .cornerRadius(50)
                         .overlay(
                             RoundedRectangle(cornerRadius: 50)
@@ -71,27 +63,33 @@ struct PlayGameView: View {
                     .foregroundStyle(Color.primary)
             }
             else {
-                GameSummaryView()
+                GameSummaryView(path: $path)
+                    .environmentObject(gameManager)
             }
         }
+        .onChange(of: currentRound, initial: false) {
+            if currentRound > roundsToPlay {
+                navigateToSummary = true
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
     
     private func bankButtonClick() {
         gamePoints += roundPoints
         showingPlayersSheet.toggle()
-    }
-
-    private func changeValue() {
-        showingPlayerListSheet = true
+        if currentRound >= roundsToPlay {
+            navigateToSummary = true
+        }
     }
 }
 
 #Preview {
-    PlayGameView()
+    PlayGameView(path: .constant(NavigationPath()))
         .environmentObject(GameManager(players: Player.samples))
 }
 
 #Preview {
-    PlayGameView()
+    PlayGameView(path: .constant(NavigationPath()))
         .environmentObject(GameManager(players: Player.final_game_samples))
 }

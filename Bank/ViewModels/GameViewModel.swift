@@ -17,4 +17,11 @@ class GameManager: ObservableObject {
      init(players: [Player]) {
          self.players = players
      }
+    
+    func resetGame() {
+        players.removeAll()
+        // Reset other properties to their initial values
+        // Example: self.currentRound = 0
+        // Example: self.isGameOver = false
+    }
 }

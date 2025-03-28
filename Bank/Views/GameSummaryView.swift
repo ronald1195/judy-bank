@@ -9,10 +9,10 @@ import SwiftUI
 
 struct GameSummaryView: View  {
     @EnvironmentObject var gameManager: GameManager
-    @State private var showingStartGameWindow: Bool = false
-
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        NavigationStack{
+        VStack {
             List {
                 Section{
                     ForEach(gameManager.players.sorted { $0.points > $1.points }) { player in
@@ -25,21 +25,19 @@ struct GameSummaryView: View  {
             }
             .scrollContentBackground(.hidden)
             .navigationBarTitle("Game Summary")
+            
+            Spacer()
+            
+            Button("End Game") {
+                resetGame()
+            }
+            .foregroundColor(.white)
+            .frame(width: 250, height: 40)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(50)
         }
-        
-        Spacer()
-        
-        Button("End Game") {
-            resetGame()
-        }
-        .foregroundColor(.white)
-        .frame(width: 250, height: 40)
-        .padding()
-        .background(Color.blue)
-        .cornerRadius(50)
-        .fullScreenCover(isPresented: $showingStartGameWindow) {
-            GameSetupView()
-        }
+        .navigationBarBackButtonHidden(true)
     }
     
     func resetGame() {
@@ -51,16 +49,14 @@ struct GameSummaryView: View  {
         // Update the leaderboard
         addPlayersToLeaderboard(players: playerResults)
         
-        showingStartGameWindow = true
-        gameManager.players.removeAll()
+        gameManager.resetGame()
         
-        // Reset the game
-        showingStartGameWindow = true
-        gameManager.players.removeAll()
+        path = NavigationPath()
     }
+    
 }
 
 #Preview {
-    GameSummaryView()
+    GameSummaryView(path: .constant(NavigationPath()))
         .environmentObject(GameManager(players: Player.final_game_samples))
 }

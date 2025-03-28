@@ -10,7 +10,7 @@ import SwiftUI
 struct LeaderboardView: View {
     @State private var leaderboardIsEmpty = false
     @State private var leaderboardData: [PlayerResult] = []
-
+    
     var body: some View {
         NavigationStack {
             // If the leaderboard is empty
@@ -54,7 +54,7 @@ struct LeaderboardView: View {
             }
         }
     }
-
+    
     func checkLeaderboard() {
         leaderboardData = loadLeaderboard()
         leaderboardIsEmpty = leaderboardData.isEmpty
@@ -74,9 +74,9 @@ struct LeaderboardView: View {
         PlayerResult(name: "David", score: 700, position: 2),
         PlayerResult(name: "Eve", score: 600, position: 1),
     ]
-
+    
     // Save the test leaderboard data
     saveLeaderboard(leaderboard: testLeaderboard)
-
+    
     return LeaderboardView()
 }

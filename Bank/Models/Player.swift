@@ -16,7 +16,7 @@ class Player: Identifiable, Hashable {
     let name: String
     var points: Int
     private(set) var active: Bool // Restrict external writes
-
+    
     init(name: String, points: Int, active: Bool = true) {
         self.name = name
         self.points = points
@@ -27,15 +27,14 @@ class Player: Identifiable, Hashable {
         hasher.combine(id)
     }
     
-    func addPoints(pointsToBeAdded: Int) -> Bool {
-        guard active else {
+    func addPoints(pointsToBeAdded: Int) {
+        if self.active == false {
             print("Player \(name) is inactive and cannot receive points.")
-            return false
+            return
         }
         
         self.points += pointsToBeAdded
         self.active = false // Automatically mark player as inactive
-        return true
     }
     
     func resetStatus() {
@@ -57,7 +56,7 @@ extension Player {
         .init(name: "Alex Kudelka",  points: 102),
         .init(name: "Alexis Santos", points: 200),
         .init(name: "Allison Mcentire",  points: 4)
-        ]
+    ]
     
     static var sample = samples[0]
     

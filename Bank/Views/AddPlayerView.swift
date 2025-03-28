@@ -5,7 +5,7 @@ import Foundation
 struct AddPlayerView: View {
     @State private var localPlayers = [Player]() // Local state for added players
     @State private var username: String = "" // Temporary username input
-    @Environment(\.dismiss) var dismiss // Environment dismiss for closing the sheet
+    @Environment(\.dismiss) var dismiss //  dismiss for closing the sheet
     @State private var popupMessageTextShowing = false
     @State private var popupNameText = ""
     @EnvironmentObject var gameManager: GameManager
@@ -47,7 +47,7 @@ struct AddPlayerView: View {
 
         // Add the player to the local state
         popupNameText = username
-        print("Player added: \(username)")
+        // print("Player added: \(username)")
         localPlayers.append(.init(name: username, points: 0))
         displayActionMessage()
         username = "" // Clear the input field

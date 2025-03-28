@@ -14,7 +14,7 @@ struct PlayersView: View {
     @State var gameViewActive = false
     @EnvironmentObject var gameManager: GameManager
     @State private var backButtonTapped = false
-    @Environment(\.dismiss) var dismiss
+    @Binding var path: NavigationPath
     
     var body: some View {
         VStack {
@@ -29,9 +29,7 @@ struct PlayersView: View {
                     
                     VStack{
                         HStack {
-                            Button(action: {
-                                dismiss()
-                            }) {
+                            Button(action: homeButonAction) {
                                 Image(systemName: "house")
                                     .font(.system(size: 20))
                                     .foregroundColor(.gray)
@@ -69,29 +67,11 @@ struct PlayersView: View {
                         }
                     }
                 }
-                
-//                Button(action: {
-//                    showingAddPlayerView = true
-//                }) {
-//                    Text("Add Players")
-//                        .font(.headline)
-//                        .foregroundColor(.white)
-//                        .padding()
-//                        .frame(width: 150)
-//                        .background(Color.blue)
-//                        .cornerRadius(50)
-//                        .padding(.horizontal)
-//                }
-//                .sheet(isPresented: $showingAddPlayerView) {
-//                    AddPlayerView()
-//                }
             }
             else {
                 // Second State: Players exist in the list
                 HStack {
-                    Button(action: {
-                        showingSettingsView = true
-                    }) {
+                    Button(action: homeButonAction) {
                         Image(systemName: "house")
                             .font(.system(size: 20))
                             .foregroundColor(.gray)
@@ -116,61 +96,62 @@ struct PlayersView: View {
                         .listRowSeparator(.hidden)
                         .listRowBackground(Capsule().fill(Color.black.opacity(0.1))
                             .padding(2))
-
+                        
                     } header: { Text("Players") }
                 }
                 .scrollContentBackground(.hidden)
-
+                
                 HStack {
                     
                     Button(action: {
                         showingAddPlayerView = true
                     }) {
                         Text("Add more")
-                          .font(.headline)
-                          .foregroundColor(.white)
-                          .padding()
-                          .frame(width: 150, height: 60)
-                          .background(Color.blue)
-                          .cornerRadius(50)
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 150, height: 60)
+                            .background(Color.blue)
+                            .cornerRadius(50)
                     }.sheet(isPresented: $showingAddPlayerView) {
                         AddPlayerView()
                     }
                     
                     Spacer()
                     
-                    Button(action: {
-                        print("Game started with players: \(gameManager.players.map { $0.name })")
-                        gameViewActive = true
-                    }) {
-                        Text("Start Game")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 150, height: 60)
-                            .background(gameManager.players.isEmpty ? Color.gray : Color.green)
-                            .cornerRadius(50)
-                            .fullScreenCover(isPresented: $gameViewActive) {
-                                PlayGameView()
-                            }
-                    }
+                    NavigationLink("Start Game", value: NavigationDestination.playGameView)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 150, height: 60)
+                        .background(gameManager.players.isEmpty ? Color.gray : Color.green)
+                        .cornerRadius(50)
                 }
                 .padding()
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
+    
+    
     
     private func deletePlayer(at offsets: IndexSet) {
         gameManager.players.remove(atOffsets: offsets)
     }
+    
+    private func homeButonAction() {
+        path = NavigationPath()
+    }
 }
 
+
+
 #Preview {
-    PlayersView()
+    PlayersView(path: .constant(NavigationPath()))
         .environmentObject(GameManager())
 }
 
 #Preview {
-    PlayersView()
+    PlayersView(path: .constant(NavigationPath()))
         .environmentObject(GameManager(players: Player.samples))
 }

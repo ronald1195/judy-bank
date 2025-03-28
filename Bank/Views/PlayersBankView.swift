@@ -36,7 +36,7 @@ struct MultiselectRow: View {
             toggleSelection()
         }
     }
-
+    
     private func toggleSelection() {
         if isSelected {
             selectedItems.remove(player.id)
@@ -61,22 +61,22 @@ struct PlayersBankView: View {
                     .listRowBackground(Capsule().fill(Color.black.opacity(0.1)).padding(2))
             }
             .scrollContentBackground(.hidden)
-
+            
             
             Button(action: { applyPointsToUsers() }, label: {
-                            Text("Apply Points")
-                                .frame(width: 300, height: 75)
-                                .background(bankingPoints == 0 ? Color.gray : Color.blue)
-                                .foregroundColor(.white)
-                                .font(.headline)
-                                .background(Color.blue)
-                                .cornerRadius(50)
-                        })
-                        .disabled(bankingPoints == 0) // Disable when no points
-                        .padding()
+                Text("Apply Points")
+                    .frame(width: 300, height: 75)
+                    .background(bankingPoints == 0 ? Color.gray : Color.blue)
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .background(Color.blue)
+                    .cornerRadius(50)
+            })
+            .disabled(bankingPoints == 0) // Disable when no points
+            .padding()
         }
     }
-   
+    
     func applyPointsToUsers() {
         for index in gameManager.players.indices {
             let player = gameManager.players[index]
@@ -92,7 +92,7 @@ struct PlayersBankView: View {
 #Preview {
     PlayersBankView(bankingPoints: 100, isPresented: .constant(true))
         .environmentObject(GameManager(players: Player.samples))
-
+    
 }
 
 #Preview {

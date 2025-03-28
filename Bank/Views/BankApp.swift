@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct BankApp: App {
     @StateObject private var gameManager = GameManager()
-    
+
     var body: some Scene {
         WindowGroup {
-           GameSetupView()
-                .preferredColorScheme(.light)
-                .environmentObject(gameManager)
+            NavigationStack {
+                GameSetupView()
+                    .preferredColorScheme(.light)
+                    .environmentObject(gameManager)
+            }
         }
     }
 }
