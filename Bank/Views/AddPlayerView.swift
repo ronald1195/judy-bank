@@ -38,6 +38,9 @@ struct AddPlayerView: View {
                 .padding(.horizontal, 70)
                 .buttonStyle(.bordered)
             }
+            .onDisappear{
+                gameManager.players.append(contentsOf: localPlayers)
+            }
         }
     }
 
