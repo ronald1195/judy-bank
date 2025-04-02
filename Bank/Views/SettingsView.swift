@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text("This is the settigns view")
+        Text("New features coming soon!")
     }
 }
 
