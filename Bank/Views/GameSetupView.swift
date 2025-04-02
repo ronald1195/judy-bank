@@ -21,7 +21,7 @@ struct GameSetupView: View {
     @EnvironmentObject var gameManager: GameManager
     @State private var path = NavigationPath()
     
-    //    @State private var showPlayersView = false // Add this state
+    // @State private var showPlayersView = false // Add this state
     
     var body: some View {
         NavigationStack(path: $path) {

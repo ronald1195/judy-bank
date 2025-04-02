@@ -124,7 +124,8 @@ struct PlayersView: View {
                         .foregroundColor(.white)
                         .padding()
                         .frame(width: 150, height: 60)
-                        .background(gameManager.players.isEmpty ? Color.gray : Color.green)
+                        .background(gameManager.players.count < 2 ? Color.gray : Color.green)
+                        .disabled(gameManager.players.count < 2)
                         .cornerRadius(50)
                 }
                 .padding()
